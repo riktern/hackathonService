@@ -1,20 +1,18 @@
-# Указываем базовый образ Python
-FROM python:3.10-alpine3.20
+# Базовый образ. По умолчанию берется из https://hub.docker.com/_/python
+FROM python:3.12-slim
 
-# Устанавливаем рабочую директорию
+# Выполнить команду в контейрене.
+RUN apt-get update && apt-get install -y gcc python3-dev
+
+# Поменять рабочую директорию. Если ее нет, создать ее.
 WORKDIR /app
 
-# Копируем файл зависимостей (если у вас есть requirements.txt)
-COPY requirements.txt .
+# Скопировать из материнской машины в контейнер
+COPY ./requirements.txt /app/requirements.txt
 
-# Устанавливаем зависимости
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r /app/requirements.txt
 
-# Копируем оставшиеся файлы проекта
-COPY . .
+COPY . /app
 
-# Указываем порт, который будет слушать приложение
-EXPOSE 8000
-
-# Указываем команду запуска приложения
-CMD ["uvicorn", "app:APP", "--host", "0.0.0.0", "--port", "8000"]
+# Запустить команду
+CMD ["python", "web_app.py"]
