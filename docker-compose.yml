@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    image: "auxxxxx/itam_hack_service202411291530"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://postgres:password@db:5432/hack_service_db"
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hack_service_db
+    ports:
+      - "5432:5432"
