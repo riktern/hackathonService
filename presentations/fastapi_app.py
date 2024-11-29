@@ -2,7 +2,8 @@ from fastapi import FastAPI, HTTPException, Path, Response, status
 from pydantic import BaseModel
 from services.short_link_service import ShortLinkService
 
-app = FastAPI(title="Наше первое приложение!", description="Прикольное приложение для генерации коротких ссылок")
+app = FastAPI(title="Наше первое приложение!",
+              description="Прикольное приложение для генерации коротких ссылок")
 short_link_service = ShortLinkService()
 
 
