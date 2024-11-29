@@ -1,6 +1,6 @@
 from persistent.db.base import Base, WithId
 from sqlalchemy import Column, Text, Integer, Boolean, DateTime, Float
-from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY, UUID
 from datetime import datetime
 
 
@@ -8,11 +8,11 @@ from datetime import datetime
 class WinnerSolution(Base, WithId):
     __tablename__ = "winner_solution"
 
-    hack_id = Column(Integer, nullable=False)
-    team_id = Column(Integer, nullable=False)
+    hack_uuid = Column(UUID(as_uuid=True), nullable=False)
+    team_uuid = Column(UUID(as_uuid=True), nullable=False)
     win_money = Column(Float, nullable=False)
     link_to_solution = Column(Text, nullable=False)
-    link_to_prez = Column(Text, nullable=False)
+    link_to_presentation = Column(Text, nullable=False)
     can_share = Column(Boolean, default=True, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)

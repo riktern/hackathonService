@@ -8,7 +8,6 @@ from datetime import datetime
 class Hackathon(Base, WithId):
     __tablename__ = "hackathon"
 
-    hack_id = Column(Integer, primary_key=True, autoincrement=True, unique=True)
     name = Column(Text, nullable=False)
     task_description = Column(Text, nullable=False)
     start_of_registration = Column(DateTime, nullable=False)
