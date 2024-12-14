@@ -1,5 +1,5 @@
 from persistent.db.base import Base, WithId
-from sqlalchemy import Column, Text, Integer, Boolean, DateTime, Float
+from sqlalchemy import Column, Text, Integer, Boolean, DateTime, Float, UUID, ForeignKey
 from sqlalchemy.dialects.postgresql import ARRAY
 from datetime import datetime
 
@@ -8,3 +8,4 @@ class Role(Base, WithId):
     __tablename__ = "role"
 
     name = Column(Text, nullable=False)
+    hacker_id = Column(UUID(as_uuid=True), ForeignKey("hacker.id"), nullable=False)
