@@ -29,3 +29,4 @@ async def get_link(link: str = Path(...)) -> Response:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Short link not found:(")
 
     return Response(status_code=status.HTTP_301_MOVED_PERMANENTLY, headers={"Location": real_link})
+#123
